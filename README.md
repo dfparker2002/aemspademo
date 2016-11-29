@@ -47,18 +47,22 @@ Usage
 1. Go to http://localhost:4502/content/aemspademo/en.html
 2. Using the sidekick, add "Training / Schedule" component
 
-![open page](etc/2016-11-29 03_06_40-AEM-SPA Demo.png | "open page")
+![open page](etc/2016-11-29 03_06_40-AEM-SPA Demo.png "open page")
+
 3. Preview mode, test operation. Data page 5 triggers an error. This is intentional.  
 
-![data on page](etc/2016-11-29 03_07_12-AEM-SPA Demo.png | "data on page")  
+![data on page](etc/2016-11-29 03_07_12-AEM-SPA Demo.png "data on page")  
 
-![features on page](etc/2016-11-29 03_07_43-AEM-SPA Demo.png | "features on page")
+![features on page](etc/2016-11-29 03_07_43-AEM-SPA Demo.png "features on page")
 
 3a. all data is stubbed, aemspademo\bundle\src\main\java\com\fcrllc\aem\spademo\impl\services\ScheduleService.java 
 
 3b. Angular behaviors defined in "apps.spademo" clientlib and individual files found here, content/src/main/content/jcr_root/etc/designs/aemspademo/clientlibs/js/libs 
 3c. Table template, content\src\main\content\jcr_root\apps\aemspademo\components\scheduletable\scheduletable.jsp
- 
+
+Class diagram
+------------------------
+![Class diagram](etc/class_diagram.png "Class diagram") 
 
 Specifying CRX Host/Port
 ------------------------
