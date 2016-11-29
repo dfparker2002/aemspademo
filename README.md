@@ -10,7 +10,11 @@ This repostitory may be found here, https://github.com/dfparker2002/spademo.git
 Setup
 -----
 
-This project uses the NEBA framework (http://neba.io/). Make sure that you have installed NEBA onto your CQ instance, before you start to play with this project.
+!!!! 
+This project uses the NEBA framework (http://neba.io/). 
+>>> Make sure that you have installed NEBA onto your CQ instance, before you start to play with this project.  <<<
+Download and install this all-in-one artifact, https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
+!!!! 
 
 CQ 5.6.x - AEM 6.x: Goto http://neba.io/download.html, download the AEM package for NEBA 3.11.0 and install it with Package Manager.
 For AEM 6.x+: use Neba.IO 4.10 or better and SpringFramework 4.1x. 
@@ -48,7 +52,7 @@ References
 ------------------------
 Source presentation: http://www.slideshare.net/netceteragroup/dynamic-components-using-singlepageapplication-concepts-in-aemcq-39532610
 
-Project repo code, https://github.com/dfparker2002/spademo.git
+Project repo code, https://github.com/dfparker2002/aemspademo.git
 
 http://neba.io/index.html
 http://neba.io/2016/09/19/neba-release-3.11.0.html
@@ -58,6 +62,7 @@ https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
 http://central.maven.org/maven2/io/neba/io.neba.neba-delivery-aem/3.11.0/io.neba.neba-delivery-aem-3.11.0.content-package
 
 
+TO DO 
 Reverse map java classes using plugin,
 https://libraries.io/github/markusmo3/uml-reverse-mapper
 https://libraries.io/maven/com.iluwatar:urm-core
