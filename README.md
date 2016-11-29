@@ -18,6 +18,7 @@ https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
 !!!! 
 
 CQ 5.6.x - AEM 6.x: Goto http://neba.io/download.html, download the AEM package for NEBA 3.11.0 and install it with Package Manager.
+
 For AEM 6.x+: use Neba.IO 4.10 or better and SpringFramework 4.1x. 
 
 After this you can use the following guide to install the demo project.
