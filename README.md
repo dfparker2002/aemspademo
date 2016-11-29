@@ -12,7 +12,7 @@ Setup
 
 !!!! 
 This project uses the NEBA framework (http://neba.io/). 
->> Make sure that you have installed NEBA onto your CQ instance, before you start to play with this project.  <<<
+>> Make sure that you have installed NEBA onto your CQ instance, before you start to play with this project.
 Download and install this all-in-one artifact, https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
 https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
 !!!! 
@@ -86,7 +86,9 @@ http://central.maven.org/maven2/io/neba/io.neba.neba-delivery-aem/3.11.0/io.neba
 
 TO DO 
 =======
-Reverse map java classes using plugin,
+- UI unit-tests (hobbes.js)
+- Class mocks and junit
+- Maven integration automation of reverse map java classes using plugin (generates class diagram above),
 https://libraries.io/github/markusmo3/uml-reverse-mapper
 https://libraries.io/maven/com.iluwatar:urm-core
 https://libraries.io/github/iluwatar/uml-reverse-mapper
