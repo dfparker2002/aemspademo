@@ -1,0 +1,163 @@
+@startuml
+package com.fcrllc.aem.spademo.impl.services {
+  class ErrorInterceptor {
+    - requestService : RequestService
+    + ErrorInterceptor()
+    + invoke(methodInvocation : MethodInvocation) : Object
+  }
+  class RequestService {
+    - HEADER_X_REQUEST_SOURCE : String {static}
+    - HEADER_X_REQUEST_SOURCE_DYNAMIC_CALL : String {static}
+    + RequestService()
+    - getRequest() : SlingHttpServletRequest
+    + isDynamicCall() : boolean
+  }
+  class ScheduleService {
+    - FIRST_DAY_SLOTS : Set<Slot> {static}
+    - SECOND_DAY_SLOTS : Set<Slot> {static}
+    - THIRD_DAY_SLOTS : Set<Slot> {static}
+    + ScheduleService()
+    + getConferenceDayFor(day : int, sortingInfo : SortingInfo) : ConferenceDay
+  }
+}
+package com.fcrllc.aem.spademo.impl.filters {
+  class PostCheckFilter {
+    - logger : Logger
+    - servletResolver : ServletResolver
+    + PostCheckFilter()
+    + destroy()
+    + doFilter(request : ServletRequest, response : ServletResponse, chain : FilterChain)
+    + init(filterConfig : FilterConfig)
+  }
+}
+package com.fcrllc.aem.spademo.impl.domain {
+  class ConferenceDay {
+    - date : LocalDate
+    - pagingInfo : PagingInfo
+    - slots : List<Slot>
+    - sortingInfo : SortingInfo
+    + ConferenceDay(date : LocalDate, slots : List<Slot>, sortingInfo : SortingInfo, pagingInfo : PagingInfo)
+    + getDate() : LocalDate
+    + getPagingInfo() : PagingInfo
+    + getSlots() : List<Slot>
+    + getSortingInfo() : SortingInfo
+  }
+  class PagingInfo {
+    - currentPageNumber : int
+    - hasNext : boolean
+    - hasPrev : boolean
+    - numbres : int[]
+    + PagingInfo(numbres : int[], currentPageNumber : int, hasNext : boolean, hasPrev : boolean)
+    + getCurrentPageNumber() : int
+    + getNumbres() : int[]
+    + hasNext() : boolean
+    + hasPrev() : boolean
+  }
+  class Slot {
+    - endTime : LocalTime
+    - speakers : String
+    - startTime : LocalTime
+    - topic : String
+    + Slot(startTime : LocalTime, endTime : LocalTime, topic : String, speakers : String)
+    + getEndTime() : LocalTime
+    + getSpeakers() : String
+    + getStartTime() : LocalTime
+    + getTopic() : String
+  }
+  enum Sort {
+    + SPEAKERS {static}
+    + START_TIME {static}
+    + TOPIC {static}
+    + getComparator(direction : SortDirection) : Comparator<Slot>
+    + valueOf(name : String) : Sort {static}
+    + values() : Sort[] {static}
+  }
+  enum SortDirection {
+    + ASC {static}
+    + DESC {static}
+    + valueOf(name : String) : SortDirection {static}
+    + values() : SortDirection[] {static}
+  }
+  class SortingInfo {
+    - sort : Sort
+    - sortDirection : SortDirection
+    + SortingInfo(sort : Sort, sortDirection : SortDirection)
+    + getSort() : Sort
+    + getSortDirection() : SortDirection
+  }
+}
+package com.fcrllc.aem.spademo.impl.util {
+  abstract class AbstractSlotComparator {
+    - sortDirection : SortDirection
+    + AbstractSlotComparator(sortDirection : SortDirection)
+    + compare(Slot, Slot) : int {abstract}
+    + getSortDirection() : SortDirection
+  }
+  class SlotSpeakersComparator {
+    + SlotSpeakersComparator(sortDirection : SortDirection)
+    + compare(first : Slot, second : Slot) : int
+  }
+  class SlotStartTimeComparator {
+    + SlotStartTimeComparator(sortDirection : SortDirection)
+    + compare(first : Slot, second : Slot) : int
+  }
+  class SlotTopicComparator {
+    + SlotTopicComparator(sortDirection : SortDirection)
+    + compare(first : Slot, second : Slot) : int
+  }
+}
+package com.fcrllc.aem.spademo.impl.model {
+  class ScheduleTableModel {
+    - headerSpeakers : String
+    - headerTalk : String
+    - headerTime : String
+    - title : String
+    + ScheduleTableModel()
+    + getHeaderSpeakers() : String
+    + getHeaderTalk() : String
+    + getHeaderTime() : String
+    + getTitle() : String
+  }
+}
+package com.fcrllc.aem.spademo.impl.serializers {
+  class ConferenceDayGsonSerializer {
+    + ConferenceDayGsonSerializer()
+    - formatDate(date : LocalDate) : String
+    + serialize(conferenceDay : ConferenceDay, typeOfSrc : Type, context : JsonSerializationContext) : JsonElement
+  }
+  class PagingInfoGsonSerializer {
+    + PagingInfoGsonSerializer()
+    + serialize(pagingInfo : PagingInfo, typeOfSrc : Type, context : JsonSerializationContext) : JsonElement
+  }
+  class SlotSerializer {
+    + SlotSerializer()
+    - formatTime(time : LocalTime) : String
+    + serialize(slot : Slot, typeOfSrc : Type, context : JsonSerializationContext) : JsonElement
+  }
+  class SortingInfoSerializer {
+    + SortingInfoSerializer()
+    + serialize(sortingInfo : SortingInfo, typeOfSrc : Type, context : JsonSerializationContext) : JsonElement
+  }
+}
+package com.fcrllc.aem.spademo.impl.controllers {
+  class ScheduleTableController {
+    - scheduleService : ScheduleService
+    + ScheduleTableController()
+    + getTableResult(pageNumber : int) : String
+    - serializeData(conferenceDay : ConferenceDay) : String
+    + sortResults(pageNumber : int, sort : Sort, sortDirection : SortDirection) : String
+  }
+}
+ConferenceDay -->  "-pagingInfo" PagingInfo
+ErrorInterceptor -->  "-requestService" RequestService
+ScheduleService -->  "-FIRST_DAY_SLOTS" Slot
+ConferenceDay -->  "-slots" Slot
+ConferenceDay -->  "-sortingInfo" SortingInfo
+AbstractSlotComparator -->  "-sortDirection" SortDirection
+ScheduleTableController -->  "-scheduleService" ScheduleService
+SortingInfo -->  "-sort" Sort
+SortingInfo -->  "-sortDirection" SortDirection
+SlotSpeakersComparator --|> AbstractSlotComparator 
+SlotStartTimeComparator --|> AbstractSlotComparator 
+SlotTopicComparator --|> AbstractSlotComparator 
+@enduml
