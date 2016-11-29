@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <!-- ====================================================================== -->
     <!-- P A R E N T P R O J E C T D E S C R I P T I O N -->
     <!-- ====================================================================== -->
 
-    <groupId>com.netcetera.aem</groupId>
-    <artifactId>spademo</artifactId>
+    <groupId>com.fcrllc.aem</groupId>
+    <artifactId>aem-spa-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Dynamic Components using SPA Concepts DEMO - Reactor Project</name>
-    <description>Maven Multimodule project for Dynamic Components using SPA Concepts DEMO.</description>
+    <name>Angular SPA DEMO - Reactor Project</name>
+    <description>Maven Multimodule project for Angular SPA DEMO.</description>
 
     <prerequisites>
         <maven>3.0.2</maven>
@@ -21,7 +23,7 @@
     <!-- P R O P E R T I E S -->
     <!-- ====================================================================== -->
     <properties>
-        <crx.host>localhost</crx.host>
+        <crx.host>localhost<crx.host>
         <crx.port>4502</crx.port>
         <crx.username>admin</crx.username>
         <crx.password>admin</crx.password>
@@ -31,9 +33,22 @@
         <publish.crx.password>admin</publish.crx.password>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<version.java>1.7</version.java>
+		<version.cq>5.6.0</version.cq>
+		<version.slf4j-api>1.7.16</version.slf4j-api>
+		<version.junit>4.11</version.junit>
+
+		<version.neba>3.11.0</version.neba>
+		<version.spring>3.2.14.RELEASE_1</version.spring>
+		<version.gson>2.7</version.gson>
+		<version.joda>2.9.2</version.joda>
+
     </properties>
 
     <dependencyManagement>
+
+<!-- Boilerplate AEM -->
         <dependencies>
             <dependency>
                 <groupId>org.osgi</groupId>
@@ -50,19 +65,19 @@
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.scr.annotations</artifactId>
-                <version>1.6.0</version>
+                <version>1.9.6</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>biz.aQute</groupId>
                 <artifactId>bndlib</artifactId>
-                <version>1.43.0</version>
+                <version>1.50.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.5.10</version>
+                <version>${version.slf4j-api}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -80,61 +95,73 @@
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.api</artifactId>
-                <version>2.2.0</version>
+                <version>2.9.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.jcr.api</artifactId>
-                <version>2.1.0</version>
+                <version>2.2.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.8.1</version>
+                <version>${version.junit}</version>
                 <scope>test</scope>
             </dependency>
-            
-            <!-- CQ -->
+
+<!-- CQ -->
             <dependency>
             	<groupId>com.day.cq</groupId>
 	            <artifactId>cq-quickstart-product-dependencies</artifactId>
-	            <version>5.6.0</version>
+	            <version>${version.cq}</version>
 	            <type>pom</type>
 	            <scope>import</scope>
 	        </dependency>
-          
-	        <!-- GSON -->
+
+<!-- PROJECT SPECIFIC -->
+<!-- GSON -->
 			<dependency>
 				<groupId>com.google.code.gson</groupId>
 				<artifactId>gson</artifactId>
-				<version>2.3</version>
+				<version>${version.gson}</version>
 			</dependency>
-			
-			<!-- Joda Time -->
+
+<!-- Joda Time -->
 			<dependency>
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
-				<version>2.4</version>
+				<version>${version.joda}</version>
 			</dependency>
 	        
         </dependencies>
     </dependencyManagement>
 
-    <!--
-        Inclusion of repositories in POMs is controversial, to say the least.
-        It would be best if you proxied the Adobe repository using a Maven
-        Repository Manager. Once you do that, remove these sections.
-     -->
-    <repositories>
-        <repository>
-            <id>adobe</id>
-            <name>Adobe Public Repository</name>
-            <url>http://repo.adobe.com/nexus/content/groups/public/</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
+<!-- Inclusion of repositories in POMs is controversial, to say the least. 
+	It would be best to proxy the Adobe repository using a Maven Repository 
+	Manager. Once you do that, remove these sections.
+-->
+	<repositories>
+		<repository>
+			<id>adobe</id>
+			<name>Adobe Public Repository</name>
+			<url>http://repo.adobe.com/nexus/content/groups/public/</url>
+			<layout>default</layout>
+		</repository>
+
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+
+		</repository>
+	</repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>adobe</id>
@@ -142,10 +169,26 @@
             <url>http://repo.adobe.com/nexus/content/groups/public/</url>
             <layout>default</layout>
         </pluginRepository>
+
+		<pluginRepository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+
     </pluginRepositories>
 
     <build>
         <pluginManagement>
+
+<!-- Boilerplate AEM -->
             <plugins>
                 <plugin>
                     <groupId>org.apache.felix</groupId>
@@ -162,8 +205,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.1</version>
                     <configuration>
-                       <source>1.6</source>
-                       <target>1.6</target>
+                       <source>${version.java}</source>
+                       <target>${version.java}</target>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -211,8 +254,9 @@
                         <password>${crx.password}</password>
                     </configuration>
                 </plugin>
-                <!--This plugin's configuration is used to store Eclipse
-                    m2e settings only. It has no influence on the Maven build itself. -->
+
+<!--This plugin's configuration is used to store Eclipse m2e settings only. 
+	It has no influence on the Maven build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
@@ -239,12 +283,17 @@
                                         <ignore/>
                                     </action>
                                 </pluginExecution>
+
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
+
+	<plugins>
+	</plugins>
+
     </build>
 
     <profiles>
@@ -268,8 +317,10 @@
             </build>
         </profile>
     </profiles>
+
   <modules>
     <module>bundle</module>
     <module>content</module>
   </modules>
+
 </project>

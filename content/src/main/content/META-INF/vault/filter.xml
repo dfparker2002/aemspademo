@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/spademo"/>
-    <filter root="/etc/designs/spademo"/>
+    <filter root="/apps/aemspademo"/>
+    <filter root="/etc/designs/aemspademo"/>
     <filter root="/content/aemspademo"/>
 </workspaceFilter>
