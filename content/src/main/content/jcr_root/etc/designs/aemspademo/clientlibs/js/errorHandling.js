@@ -12,10 +12,6 @@ aemspa.errorHandling = (function($, utils, errorMessage) {
       $('.errorMessage').css('display', 'none');
       if (responseHasError(data)) {
         if (responseHasErrorMessage(data)) {
-        	data = $(data).concat("<p>A resource was requested that does not exist. Please try another resource.</p>")
-        		.wrap(function() {
-        		  return "<div class='errorMessage'></div>";
-        	});
           displayErrorMessage(data);
           executeErrorHandlers(options.error, jqXHR);
           return;

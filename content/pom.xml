@@ -19,7 +19,7 @@
 
     <artifactId>aemspademo-content</artifactId>
     <packaging>content-package</packaging>
-    <name>Dynamic Components using SPA Concepts DEMO Package</name>
+    <name>Dynamic Components using SPA techniques - Content Package</name>
 
     <dependencies>
         <dependency>

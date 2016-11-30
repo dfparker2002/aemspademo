@@ -7,7 +7,7 @@
         cq:lastModifiedBy="admin"
         cq:template="/apps/aemspademo/templates/contentpage"
         jcr:primaryType="cq:PageContent"
-        jcr:title="adaptTo Schedule"
+        jcr:title="Training / Schedule"
         sling:resourceType="aemspademo/components/templates/contentpage">
         <par
             jcr:primaryType="nt:unstructured"

@@ -6,7 +6,7 @@
 <entry key="version">1.0-SNAPSHOT</entry>
 <entry key="dependencies" />
 <entry key="packageFormatVersion">2</entry>
-<entry key="description">Angular SPA DEMO Package</entry>
+<entry key="description">AEM SPA DEMO Package</entry>
 <entry key="group">FCRLC</entry>
 <entry key="name">aemspademo-content</entry>
 <entry key="path">/etc/packages/FCRLC/aemspademo-content-1.0-SNAPSHOT.zip</entry>

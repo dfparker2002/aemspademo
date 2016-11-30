@@ -12,8 +12,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Angular SPA DEMO - Reactor Project</name>
-    <description>Maven Multimodule project for Angular SPA DEMO.</description>
+    <name>AEM Single Page Application Demo - Reactor Project</name>
+    <description>Maven Multimodule project for AEM Single Page Application using JQuery, Bootstrap Demo.</description>
 
     <prerequisites>
         <maven>3.0.2</maven>

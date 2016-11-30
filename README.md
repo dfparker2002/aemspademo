@@ -1,7 +1,7 @@
-Angular SPA Demo
+AEM Single Page Application (SPA) using JQuery, Bootstrap Demo
 ========
 
-This project is a demonstration of how you can build an Angular, Single-Page-Application in CQ or Adobe Experience Manager (CQ5, AEM).
+This project is a demonstration of how you can build a Single-Page-Application in CQ or Adobe Experience Manager (CQ5, AEM) using Bootstrap and JQuery behaviors and content-generating templates.
 
 Based on an 2014 AdaptTo presentation.
 
@@ -58,7 +58,8 @@ Usage
 
 3a. all data is stubbed, aemspademo\bundle\src\main\java\com\fcrllc\aem\spademo\impl\services\ScheduleService.java 
 
-3b. Angular behaviors defined in "apps.spademo" clientlib and individual files found here, content/src/main/content/jcr_root/etc/designs/aemspademo/clientlibs/js/libs 
+3b. JavaScript behaviors defined in "apps.spademo" clientlib and individual files found here, content/src/main/content/jcr_root/etc/designs/aemspademo/clientlibs/js/libs 
+
 3c. Table template, content\src\main\content\jcr_root\apps\aemspademo\components\scheduletable\scheduletable.jsp
 
 Class diagram

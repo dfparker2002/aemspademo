@@ -8,9 +8,9 @@
       <div class="header-wrapper">
         <div class="fcrllc logo"></div>
         <div class="intro">
-          <h1>AEMSPA Demo</h1>
+          <h1>AEM SPA Demo</h1>
           <p class="lead">
-              AEM Angular Demo
+              AEM Single Page Application using JQuery, Bootstrap techniques
           </p>
         </div>
       </div>
