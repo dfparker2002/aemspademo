@@ -138,11 +138,40 @@
         </dependencies>
     </dependencyManagement>
 
+	<dependencies>
+
+		<dependency>
+			<groupId>io.neba</groupId>
+			<artifactId>io.neba.neba-delivery-aem</artifactId>
+			<version>3.11.0</version>
+			<type>content-package</type>
+		</dependency>
+
+	</dependencies>
+
 <!-- Inclusion of repositories in POMs is controversial, to say the least. 
 	It would be best to proxy the Adobe repository using a Maven Repository 
 	Manager. Once you do that, remove these sections.
 -->
 	<repositories>
+
+		<repository>
+			<id>neba@central</id>
+			<name>Central Maven repository for NEBA.IO</name>
+			<url>http://central.maven.org/maven2/</url>
+<!-- target: http://central.maven.org/maven2/io/neba/io.neba.neba-delivery-aem/3.11.0/io.neba.neba-delivery-aem-3.11.0.zip -->
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+
+		<repository>
+			<id>eclipse-gemini</id>
+			<name>Eclipse Gemini Maven repository</name>
+			<url>http://download.eclipse.org/gemini/mvn/</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+
 		<repository>
 			<id>adobe</id>
 			<name>Adobe Public Repository</name>
@@ -155,11 +184,9 @@
 			<name>Central Repository</name>
 			<url>http://repo.maven.apache.org/maven2</url>
 			<layout>default</layout>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-
+			<snapshots><enabled>false</enabled></snapshots>
 		</repository>
+
 	</repositories>
 
     <pluginRepositories>
@@ -292,7 +319,79 @@
         </pluginManagement>
 
 	<plugins>
-	</plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <version>0.0.24</version>
+                <extensions>true</extensions>
+
+                <configuration>
+                    <group>NEBA.IO</group>
+                    <filterSource>${basedir}/META-INF/vault/filter.xml</filterSource>
+
+                    <embeddeds>
+<!-- OSGi bundles -->
+						<embedded>
+						</embedded>
+
+                    </embeddeds>
+
+                    <subPackages>
+<!-- 3rd content projects -->
+						<subPackage>
+
+						    <groupId>io.neba</groupId>
+						    <artifactId>io.neba.neba-delivery-aem</artifactId>
+							<filter>true</filter>
+
+						</subPackage>
+
+                    </subPackages>
+                    <targetURL>http://${crx.host}:${crx.port}/crx/packmgr/service.jsp</targetURL>
+                </configuration>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>package</goal>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+
+            </plugin>
+
+        </plugins>
+
+<!-- ====================================================================== -->
+<!-- B U I L D   D E F I N I T I O N                                        -->
+<!-- ====================================================================== -->
+        <resources>
+            <resource>
+                <directory>${basedir}/jcr_root</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/.vlt</exclude>
+                    <exclude>**/.vltignore</exclude>
+                    <exclude>**/*.iml</exclude>
+                    <exclude>**/*.ipr</exclude>
+                    <exclude>**/*.iws</exclude>
+                    <exclude>**/.classpath</exclude>
+                    <exclude>**/.project</exclude>
+                    <exclude>**/.DS_Store</exclude>
+                    <exclude>**/target/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
 
     </build>
 

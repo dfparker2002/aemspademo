@@ -11,15 +11,14 @@ Setup
 -----
 
 !!!! 
+
 This project uses the NEBA framework (http://neba.io/). 
->> Make sure that you have installed NEBA onto your CQ instance, before you start to play with this project.
-Download and install this all-in-one artifact, https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
+> Project installs an all-in-one artifact, https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
 https://mvnrepository.com/artifact/io.neba/io.neba.neba-delivery-aem/3.11.0
+
 !!!! 
 
-CQ 5.6.x - AEM 6.x: Goto http://neba.io/download.html, download the AEM package for NEBA 3.11.0 and install it with Package Manager.
-
-For AEM 6.x+: use Neba.IO 4.10 or better and SpringFramework 4.1x. 
+For AEM 6.x+: replace 3.11.0 and use Neba.IO 4.10 or better and SpringFramework 4.1x. Recommend to use parent project properties to populate the build recipe.
 
 After this you can use the following guide to install the demo project.
 
@@ -45,20 +44,26 @@ Once the working copy is created, you can use the normal `vlt up` and `vlt ci` c
 
 Usage
 ------------------------
-1. Go to http://localhost:4502/content/aemspademo/en.html
-2. Using the sidekick, add "Training / Schedule" component
+1. Go to http://localhost:4502/content/aemspademo/en/schedule.html
+![data on page](etc/2016-12-03 04_47_54-AEM-SPA Demo.png "data on page")
 
-![open page](etc/2016-11-29 03_06_40-AEM-SPA Demo.png "open page")
+2. Edit the page:
 
-3. Preview mode, test operation. Data page 5 triggers an error. This is intentional.  
+2a. Delete current component.
 
-![data on page](etc/2016-11-29 03_07_12-AEM-SPA Demo.png "data on page")  
+2b. Using the sidekick, add "Training / Schedule" component. 
+![open page](etc/2016-12-03 04_47_28-AEM-SPA Demo.png "open page")
 
-![features on page](etc/2016-11-29 03_07_43-AEM-SPA Demo.png "features on page")
+2c. One may edit the column headers by right-clicking the compent | Edit,
 
-3a. all data is stubbed, aemspademo\bundle\src\main\java\com\fcrllc\aem\spademo\impl\services\ScheduleService.java 
+![Edit column headers](etc/2016-12-03 05_32_44-AEM-SPA Demo.png "Edit column headers")3. Preview mode, test operation. Data page 5 triggers an error. This is intentional.
 
-3b. JavaScript behaviors defined in "apps.spademo" clientlib and individual files found here, content/src/main/content/jcr_root/etc/designs/aemspademo/clientlibs/js/libs 
+![Features on page](etc/2016-11-29 03_07_43-AEM-SPA Demo.png "Features on page")
+
+3a. All data is stubbed, aemspademo\bundle\src\main\java\com\fcrllc\aem\spademo\impl\services\ScheduleService.java 
+
+3b. JavaScript behaviors defined in "apps.spademo" clientlib and individual files found here, 
+content/src/main/content/jcr_root/etc/designs/aemspademo/clientlibs/js/libs 
 
 3c. Table template, content\src\main\content\jcr_root\apps\aemspademo\components\scheduletable\scheduletable.jsp
 
@@ -88,6 +93,7 @@ http://central.maven.org/maven2/io/neba/io.neba.neba-delivery-aem/3.11.0/io.neba
 
 TO DO 
 =======
+- Error page (/content/aemspademo/en/error404.html) should render correct when component is added to any page not at the level of "Training / Schedule". Currently defaults to Sling error page.
 - UI unit-tests (hobbes.js)
 - Class mocks and junit
 - Maven integration automation of reverse map java classes using plugin (generates class diagram above),

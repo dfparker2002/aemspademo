@@ -116,14 +116,14 @@
 			<version>${version.spring}</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!-- GSON -->
+
+<!-- GSON -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
-		
-		<!-- Joda Time -->
+
+<!-- Joda Time -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -192,15 +192,21 @@
             </plugin>
         </plugins>
     </build>
-	
+
 	<repositories>
+
 		<repository>
 			<id>eclipse-gemini</id>
 			<name>Eclipse Gemini Maven repository</name>
 			<url>http://download.eclipse.org/gemini/mvn/</url>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>false</enabled></snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
+
 	</repositories>
 
 </project>

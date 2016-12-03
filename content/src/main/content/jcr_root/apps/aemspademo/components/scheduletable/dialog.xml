@@ -14,7 +14,7 @@
       name="./jcr:title"
       fieldLabel="Title"
       allowBlank="false"
-      defaultValue="Training / Shedule""/>
+      defaultValue="Training / Shedule" />
     <headerTime 
       xtype="textfield"
       jcr:primaryType="cq:Widget"

@@ -33,15 +33,21 @@ public class ErrorInterceptor implements MethodInterceptor {
   public Object invoke(MethodInvocation methodInvocation) throws Throwable {
 
     if (requestService.isDynamicCall()) {
+
       try {
+
         return methodInvocation.proceed();
       } catch (ConferenceException e) {
+
         JsonObject json = new JsonObject();
         json.addProperty("errorMessage", e.getMessage());
+
         return new Gson().toJson(json);
       } catch (Exception e) {
+
         JsonObject json = new JsonObject();
         json.addProperty("errorUrl", "error404.html");
+
         return new Gson().toJson(json);
       }
     }
